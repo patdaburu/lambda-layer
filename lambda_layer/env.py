@@ -15,8 +15,10 @@ from typing import NamedTuple, Union
 
 
 class Vars(Enum):
+    #: the layer configuration path
+    LAMBDA_LAYER_CONFIG = 'LAMBDA_LAYER_CONFIG'
     #: the distribution directory
-    LAMBDA_LAYER_DIST_DIR: 'LAMBDA_LAYER_DIST_DIR'
+    LAMBDA_LAYER_DIST_DIR = 'LAMBDA_LAYER_DIST_DIR'
 
 
 class VarDef(NamedTuple):
@@ -25,9 +27,13 @@ class VarDef(NamedTuple):
 
 
 _VARS = {
-    Vars.LAMBDA_LAYER_DIST_DIR:  VarDef(
+    Vars.LAMBDA_LAYER_CONFIG:  VarDef(
         default=str(Path.cwd().expanduser().resolve() / '.lambda-layer.toml'),
         help='The path to the layer configuration file.'
+    ),
+    Vars.LAMBDA_LAYER_DIST_DIR:  VarDef(
+        default=str(Path.cwd().expanduser().resolve() / 'aws-dist'),
+        help='The path to the distribution directory.'
     )
 }
 

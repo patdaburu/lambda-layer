@@ -21,6 +21,9 @@ It can be used as a handy facility for running the task from a command line.
 import logging
 import click
 from .__init__ import __version__
+from . import env
+from .package import make
+from .config import LayerConfig
 
 LOGGING_LEVELS = {
     0: logging.NOTSET,
@@ -70,12 +73,18 @@ def cli(info: Info, verbose: int):
 
 @cli.command()
 @pass_info
-def hello(_: Info):
-    """Say 'hello' to the nice people."""
-    click.echo(f"lambda-layer says 'hello'")
+def package(_: Info):
+    """Create configured packages."""
+    make(
+        dist_dir=env.get(env.Vars.LAMBDA_LAYER_DIST_DIR),
+        layer=None  # TODO: Fix this
+    )
 
 
 @cli.command()
 def version():
     """Get the library version."""
     click.echo(click.style(f"{__version__}", bold=True))
+
+
+
