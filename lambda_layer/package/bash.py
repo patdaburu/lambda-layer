@@ -1,20 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Created by pat on 1/19/20
+# Created by pat on 1/20/20
 """
-Create AWS lambda layer packages.
+Create packages using ``bash``.
 
-.. currentmodule:: lambda_layer.package
+.. currentmodule:: lambda_layer.package.bash
 .. moduleauthor:: Pat Daburu <pat@daburu.net>
 """
 from subprocess import Popen, PIPE
-import sys
 from pathlib import Path
 import tempfile
-from typing import Callable, Iterable, Union
+from typing import Iterable, Union
 import click
-from .config import LayerConfig
+from lambda_layer.config import LayerConfig
 
 
 def _run(
@@ -63,30 +62,6 @@ def _venv(
     _run(cmd, silent=silent)
 
     return path
-
-    # proc = Popen(
-    #     cmd,
-    #     stdout=PIPE,
-    #     stderr=PIPE
-    # )
-    # stdout, stderr = proc.communicate()
-    #
-    # fg = 'green' if proc.returncode == 0 else 'red'
-    #
-    # if proc.returncode != 0 or not silent:
-    #     for line in stdout.decode('utf-8').split('\n'):
-    #         click.echo(click.style(line, fg=fg))
-    #
-    # # If anything was printed to standard error, let's show that.
-    # for line in stderr.decode('utf-8').split('\n'):
-    #     click.echo(click.style(line, fg='red'))
-    #
-    # # At this point the directory should exist.
-    # if not path.is_dir():
-    #     raise Exception(f"{path} was not created.")  # TODO: Custom exceptions
-    #
-    # # Return the path to the virtual environment to the caller.
-    # return path
 
 
 def _requirements(
