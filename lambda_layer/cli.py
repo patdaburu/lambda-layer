@@ -23,7 +23,7 @@ import click
 from .__init__ import __version__
 from . import env
 from .package import make
-from .config import LayerConfig
+from .config import Config, LayerConfig
 
 LOGGING_LEVELS = {
     0: logging.NOTSET,
@@ -72,13 +72,30 @@ def cli(info: Info, verbose: int):
 
 
 @cli.command()
+@click.option(
+    'config', '-c', '--config',
+    envvar='PATHS',
+    default=None,
+    type=click.Path(exists=True))
 @pass_info
-def package(_: Info):
+def package(
+        _: Info,
+        config: str
+):
     """Create configured packages."""
-    make(
-        dist_dir=env.get(env.Vars.LAMBDA_LAYER_DIST_DIR),
-        layer=None  # TODO: Fix this
+    # Figure out where the configuration file is.
+    _configf = (
+        config if config
+        else env.get(env.Vars.LAMBDA_LAYER_CONFIG)
     )
+    # Load the configuration.
+    config = Config.loadf(_configf)
+
+    for layer in config.layers:
+        make(
+            dist_dir=env.get(env.Vars.LAMBDA_LAYER_DIST_DIR),
+            layer=layer  # TODO: Fix this
+        )
 
 
 @cli.command()

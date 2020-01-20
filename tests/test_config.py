@@ -3,7 +3,7 @@
 from pathlib import Path
 from lambda_layer import config
 import pytest
-from lambda_layer.config import LayerConfig
+from lambda_layer.config import Config, LayerConfig
 
 
 def config_path(name: str) -> Path:
@@ -12,9 +12,8 @@ def config_path(name: str) -> Path:
 
 
 def test_loadf_single():
-    configs = list(LayerConfig.loadf(config_path('lambda-layer.toml')))
+    config = list(Config.loadf(config_path('lambda-layer.toml')))
 
     print()
-    for config in configs:
-        print(config)
+    print(config)
 

@@ -26,11 +26,25 @@ class LayerConfig(NamedTuple):
             'packages': tuple(data.get('packages', []))
         })
 
+
+class Config(NamedTuple):
+    environment: Mapping[str, str]
+    layers: Tuple[LayerConfig]
+
+    @classmethod
+    def load(cls, data: Mapping[str, Any]) -> 'Config':
+        return Config(**{
+            'environment': dict(data.get('environment', {})),
+            'layers': tuple([
+                LayerConfig.load(layer) for layer in data.get('layers', [])
+            ])
+        })
+
     @classmethod
     def loadf(
             cls,
             path: Union[str, Path]
-    ) -> Iterable['LayerConfig']:
+    ) -> 'Config':
         _path = (
             path if isinstance(path, Path) else Path(path)
         ).expanduser().resolve()
@@ -43,7 +57,7 @@ class LayerConfig(NamedTuple):
         # Read the contents.
         data = toml.loads(_path.read_text())
 
-        # Iterate over the layers in the TOML config and yield the
-        # objects.
-        for layer in data.get('layers'):
-            yield cls.load(layer)
+        # Parse it out.
+        return cls.load(data)
+
+
