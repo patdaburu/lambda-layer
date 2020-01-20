@@ -105,16 +105,26 @@ def _requirements(
 def _install(
         venv: Path,
         requirements: Path,
+        upgrade_pip: bool = True,
         silent: bool = False
 ):
-    # TODO: Standardize this.
-    cmd = [
-        #'source', f"{venv}/bin/activate",  # '&&',
-        # 'pip3', 'install', '-r', str(requirements)
-        f"source {venv}/bin/activate && "
-        f"pip3 install --upgrade pip && "  # TODO... this should be optional
-        f"pip3 install -r {requirements}"
+    # # TODO: Standardize this.
+    # cmd = [
+    #     #'source', f"{venv}/bin/activate",  # '&&',
+    #     # 'pip3', 'install', '-r', str(requirements)
+    #     f"source {venv}/bin/activate && "
+    #     f"pip3 install --upgrade pip && "  # TODO... this should be optional
+    #     f"pip3 install -r {requirements}"
+    # ]
+
+    cmds = [
+        f"source {venv}/bin/activate"
     ]
+    if upgrade_pip:
+        cmds.append("pip3 install --upgrade pip")
+    cmds.append(f"pip3 install -r {requirements}")
+
+    cmd = [' && '.join(cmds)]
 
     _run(cmd, shell=True, silent=silent)
 
