@@ -74,7 +74,7 @@ def cli(info: Info, verbose: int):
 @cli.command()
 @click.option(
     'config', '-c', '--config',
-    envvar='PATHS',
+    envvar=env.Vars.LAMBDA_LAYER_CONFIG.name,
     default=None,
     type=click.Path(exists=True))
 @pass_info
@@ -93,6 +93,7 @@ def package(
 
     for layer in config.layers:
         make(
+            # python='3.6',  # TODO: Get this from the configuration!
             dist_dir=env.get(env.Vars.LAMBDA_LAYER_DIST_DIR),
             layer=layer  # TODO: Fix this
         )
