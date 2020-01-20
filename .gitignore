@@ -104,3 +104,6 @@ ENV/
 
 # JetBrains
 .idea
+
+# AWS distribution directory
+/aws-dist

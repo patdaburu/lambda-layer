@@ -204,10 +204,5 @@ def make(
         # Copy the archive to the distribution directory.
         shutil.copyfile(str(archive), str(dist_path))
 
-        g = input("any key yo")
-
-
         # Return the path to the distribution file.
         return dist_path
-
-
