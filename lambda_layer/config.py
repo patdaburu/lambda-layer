@@ -15,12 +15,19 @@ import toml
 
 class LayerConfig(NamedTuple):
     """A layer configuration."""
+
     name: str  #: the name of the layer
     version: str  #: the layer version
     packages: Tuple[str]  #: the installed packages
 
     @classmethod
     def load(cls, data: Mapping[str, Any]) -> 'LayerConfig':
+        """
+        Load a layer configuration from a mapping of simple types.
+
+        :param data: the mapping
+        :return: the layer configuration object
+        """
         return LayerConfig(**{
             **data,
             'packages': tuple(data.get('packages', []))
@@ -28,11 +35,19 @@ class LayerConfig(NamedTuple):
 
 
 class Config(NamedTuple):
-    environment: Mapping[str, str]
-    layers: Tuple[LayerConfig]
+    """A lambda layer configuration."""
+
+    environment: Mapping[str, str]  #: environment settings
+    layers: Tuple[LayerConfig]  #: the layers
 
     @classmethod
     def load(cls, data: Mapping[str, Any]) -> 'Config':
+        """
+        Load a configuration from a mapping of simple types.
+
+        :param data: the mapping
+        :return:  the configuration object
+        """
         return Config(**{
             'environment': dict(data.get('environment', {})),
             'layers': tuple([
@@ -45,6 +60,12 @@ class Config(NamedTuple):
             cls,
             path: Union[str, Path]
     ) -> 'Config':
+        """
+        Load a configuration from a configuration file.
+
+        :param path: the file path
+        :return:  the configuration object
+        """
         _path = (
             path if isinstance(path, Path) else Path(path)
         ).expanduser().resolve()
@@ -59,5 +80,3 @@ class Config(NamedTuple):
 
         # Parse it out.
         return cls.load(data)
-
-

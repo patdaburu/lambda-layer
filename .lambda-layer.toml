@@ -1,5 +1,3 @@
-
-
 [[layers]]
 name = "lambda-layer"
 version = "0.0.1"

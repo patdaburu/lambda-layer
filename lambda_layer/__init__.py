@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Create lambda layers for your python dependencies!
+Create lambda layers for your python dependencies.
 
 .. currentmodule:: lambda_layer
 .. moduleauthor:: Pat Daburu <pat@daburu.net>

@@ -18,11 +18,8 @@ from typing import Iterable, Union
 import zipfile
 import click
 from .common import ProcOutput
+from .. import env
 from ..config import LayerConfig
-
-
-#: the path to the shell executable
-SHELL = os.environ.get('LAMBDA_LAYER_SHELL', '/bin/bash')
 
 
 def _run(
@@ -48,7 +45,7 @@ def _run(
             stdout=PIPE,
             stderr=PIPE,
             shell=shell,
-            executable=SHELL
+            executable=env.get(env.Vars.LAMBDA_LAYER_SHELL)
         )
     else:  # ...otherwise, there's a little less to do.
         proc = Popen(

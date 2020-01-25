@@ -12,6 +12,7 @@ Create lambda layers for your python dependencies!
    :caption: Contents:
 
    getting_started
+   lambda_layer_toml
    api
    development
    requirements

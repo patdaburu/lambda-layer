@@ -12,6 +12,7 @@ from typing import NamedTuple
 
 
 class ProcOutput(NamedTuple):
-    """Output from `popen`"""
+    """Output from external processes."""
+
     stdout: str  #: standard out (STDOUT)
     stderr: str  #: standard error (STDERR)

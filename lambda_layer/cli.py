@@ -90,12 +90,13 @@ def package(
     )
     # Load the configuration.
     config = Config.loadf(_configf)
-
+    # Iterate the layers in the configuration and create each one.
     for layer in config.layers:
+        click.echo(f"name:    {layer.name}")
+        click.echo(f"version: {layer.version}")
         make(
-            # python='3.6',  # TODO: Get this from the configuration!
             dist_dir=env.get(env.Vars.LAMBDA_LAYER_DIST_DIR),
-            layer=layer  # TODO: Fix this
+            layer=layer
         )
 
 
