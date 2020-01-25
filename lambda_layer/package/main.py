@@ -9,20 +9,28 @@ Create AWS lambda layer packages.
 .. moduleauthor:: Pat Daburu <pat@daburu.net>
 """
 from pathlib import Path
+import platform
 from typing import Union
 from lambda_layer.config import LayerConfig
 from . import bash
 
 
 def make(
-        # python: str,
         dist_dir: Union[str, Path],
         layer: LayerConfig,
         silent: bool = False
 ) -> Path:
-    # TODO: Create options for Windows.
+    """
+    Make a layer.
+
+    :param dist_dir: the path to the distribution directory
+    :param layer: the layer configuration
+    :param silent: ``True`` to suppress normal output
+    """
+    if platform.system() == 'Windows':
+        raise NotImplementedError("Windows isn't supported just yet.")
+
     return bash.make(
-        # python=python,
         dist_dir=dist_dir,
         layer=layer,
         silent=silent
