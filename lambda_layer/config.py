@@ -9,7 +9,7 @@ Configuration objects.
 .. moduleauthor:: Pat Daburu <pat@daburu.net>
 """
 from pathlib import Path
-from typing import Any, Iterable, Mapping, NamedTuple, Tuple, Union
+from typing import Any, Mapping, NamedTuple, Tuple, Union
 import toml
 
 

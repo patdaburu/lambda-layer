@@ -23,7 +23,7 @@ import click
 from .__init__ import __version__
 from . import env
 from .package import make
-from .config import Config, LayerConfig
+from .config import Config
 
 LOGGING_LEVELS = {
     0: logging.NOTSET,
@@ -103,6 +103,3 @@ def package(
 def version():
     """Get the library version."""
     click.echo(click.style(f"{__version__}", bold=True))
-
-
-
