@@ -4,8 +4,7 @@ Create AWS Lambda layers for your AWS Lambda python functions!
 
 ## What are AWS Lambda Layers?
 
-Good question.  Let's ask the [AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
-> You can configure your Lambda function to pull in additional code and content in the form of layers. A layer is a ZIP archive that contains libraries, a custom runtime, or other dependencies. With layers, you can use libraries in your function without needing to include them in your deployment package.
+Good question.  Let's ask the [AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html):  *You can configure your Lambda function to pull in additional code and content in the form of layers. A layer is a ZIP archive that contains libraries, a custom runtime, or other dependencies. With layers, you can use libraries in your function without needing to include them in your deployment package.*
 
 ## What is `lambda-layer`?
 
