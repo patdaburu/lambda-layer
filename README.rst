@@ -7,12 +7,12 @@ What are AWS Lambda Layers?
 ---------------------------
 
 Good question. Let's ask the `AWS
-documentation <https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html>`__.
-> You can configure your Lambda function to pull in additional code and
+documentation <https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html>`__:
+*You can configure your Lambda function to pull in additional code and
 content in the form of layers. A layer is a ZIP archive that contains
 libraries, a custom runtime, or other dependencies. With layers, you can
 use libraries in your function without needing to include them in your
-deployment package.
+deployment package.*
 
 What is ``lambda-layer``?
 -------------------------

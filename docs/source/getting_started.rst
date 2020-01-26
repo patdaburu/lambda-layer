@@ -7,6 +7,8 @@
 Getting Started
 ***************
 
+.. _getting_started_installing:
+
 Installing the Library
 ======================
 
