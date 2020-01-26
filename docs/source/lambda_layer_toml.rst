@@ -11,7 +11,8 @@ Configuration Files
 `toml <https://github.com/toml-lang/toml>`_.
 
 By default, when you run ``lambda-layer`` the application will look for
-a file called ``.lambda-layer.toml``.
+a file called ``.lambda-layer.toml`` in the current directory (though you
+can supply an alternate path if you like).
 
 ======
 Layers
