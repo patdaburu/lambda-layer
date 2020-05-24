@@ -209,7 +209,7 @@ def _archive(
         for root, dirs, files in os.walk(str(dir_path)):
             for file in files:
                 path = os.path.join(root, file)
-                arcname = "/python"+path[site_packages_len:]
+                arcname = "/python" + path[site_packages_len:]
                 _zip.write(path, arcname=arcname)
     # Return the archive path to the caller.
     return archive
